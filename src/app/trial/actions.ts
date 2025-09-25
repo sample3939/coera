@@ -45,7 +45,11 @@ const trialSchema = z.object({
       "電話番号の形式を確認してください"
     ),
   format: z.enum(["対面", "オンライン"], {
-    errorMap: () => ({ message: "希望形式を選択してください" }),
+    errorMap: (issue, ctx) => {
+      void issue;
+      void ctx;
+      return { message: "希望形式を選択してください" };
+    },
   }),
   firstChoice: z
     .string()
